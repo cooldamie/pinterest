@@ -1,19 +1,23 @@
 /* eslint-disable react/jsx-no-undef */
-import React from 'react'
-import PinterestIcon from '@material-ui/icons/Pinterest'
-import  SearchIcon  from '@material-ui/icons/Search'
-
+import React,{ useState} from 'react'
 import { IconButton } from '@material-ui/core'
 import styled from '@emotion/styled'
+import { Notifications, Textsms,Face, KeyboardArrowDown, Search, CameraOutlined } from '@material-ui/icons'
 // import { PersonAddOutlined } from '@material-ui/icons'
 
 
-function Header() {
+function Header(a) {
+    const[input,setInput]=useState("");
+    const onSearchSubmit = (e) => {
+        e.preventDefault();
+        a.onSubmit(input);
+   }
+
     return (
         <Wrapper>
             <LogoWrapper>
                 <IconButton>
-                    <PinterestIcon />
+                    <CameraOutlined />
                 </IconButton>
 
             </LogoWrapper>
@@ -21,32 +25,32 @@ function Header() {
                 <a href="/">Home</a>
             </HomePageButton>
             <FollowingButton>
-                <a href="/" >Following </a>
+                <a href="/" >Blog </a>
             </FollowingButton>
             <SearchWrapper>
                 <SearchBarWrapper>
                     <IconButton>
-                        <SearchIcon />
+                        <Search />
                     </IconButton>
                 
                     <form>
-                        <input type="text" />
-                        <button type="submit" />
+                        <input type="text" onChange={(e) => setInput(e.target.value)}/>
+                        <button type="submit" onClick={onSearchSubmit} />
                     </form>
                 </SearchBarWrapper>
             </SearchWrapper>
             <IconsWrapper>
                 <IconButton>
-                    <NotificationsIcon />
+                    <Notifications />
                 </IconButton>
                 <IconButton>
-                    <TextsmsIcon />
+                    <Textsms />
                 </IconButton>
                 <IconButton>
-                    <FaceIcon />
+                    <Face />
                 </IconButton>
                 <IconButton>
-                    <KeyboardArrowDownIcon />
+                    <KeyboardArrowDown />
                 </IconButton>
 
            </IconsWrapper>
@@ -115,10 +119,11 @@ const SearchBarWrapper=styled.div`
     background-color:#efefef;
     display: flex;
     height: 2.5rem;
-    width: 100%;
+    width: 98%;
     border-radius: 50px;
     border: none;
     padding-left: 10px;
+    margin-right: 30px;
 
     form {
         display: flex;
@@ -141,4 +146,7 @@ const SearchBarWrapper=styled.div`
     form > button {
         display: none;
     }
+`
+const IconsWrapper =styled.div`
+
 `
